@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "workforce-management-api",
+		"name": "Workforce Management API",
+		"description": "Collection for testing the Workforce Management API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Staff",
+			"item": [
+				{
+					"name": "Get All Staff",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/staff",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "staff"]
+						}
+					}
+				},
+				{
+					"name": "Get Staff by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/staff/staff1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "staff", "staff1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get All Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks"]
+						}
+					}
+				},
+				{
+					"name": "Get Task by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/task1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "task1"]
+						}
+					}
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"New Task\",\n  \"description\": \"Task description\",\n  \"priority\": \"HIGH\",\n  \"startDate\": \"2024-01-01T09:00:00\",\n  \"dueDate\": \"2024-01-02T17:00:00\",\n  \"staffId\": \"staff1\",\n  \"customerReference\": \"CUST002\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks"]
+						}
+					}
+				},
+				{
+					"name": "Get Tasks by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/date-range?startDate=2024-01-01T00:00:00&endDate=2024-01-01T23:59:59",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "date-range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-01-01T23:59:59"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Tasks by Staff",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/staff/staff1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "staff", "staff1"]
+						}
+					}
+				},
+				{
+					"name": "Get Tasks by Priority",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/priority/HIGH",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "priority", "HIGH"]
+						}
+					}
+				},
+				{
+					"name": "Assign Task by Reference (Bug Fix 1)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/assign-by-ref?customerReference=CUST001&newStaffId=staff2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "assign-by-ref"],
+							"query": [
+								{
+									"key": "customerReference",
+									"value": "CUST001"
+								},
+								{
+									"key": "newStaffId",
+									"value": "staff2"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Task Priority (Feature 2)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"priority\": \"HIGH\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/task1/priority",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "task1", "priority"]
+						}
+					}
+				},
+				{
+					"name": "Add Comment to Task (Feature 3)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"This is a test comment\",\n  \"author\": \"John Doe\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/task1/comments",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "task1", "comments"]
+						}
+					}
+				},
+				{
+					"name": "Complete Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/task1/complete",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "task1", "complete"]
+						}
+					}
+				},
+				{
+					"name": "Cancel Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/task1/cancel",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "tasks", "task1", "cancel"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
